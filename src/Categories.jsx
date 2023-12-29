@@ -1,10 +1,12 @@
 import { useState, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
+import { useAuth } from './AuthContext';
 
 export const Categories = () => {
     const [categorias, setCategorias] = useState([]);
     const [error, setError] = useState(null);
     const [errorCargaAPI, setErrorCargaAPI] = useState(false);
+    const { user } = useAuth();
 
     const fetchCategorias = async () => {
         try {
@@ -31,9 +33,10 @@ export const Categories = () => {
             <h1 className="titulo">  Categorias  </h1>
             <div>
                 <div className="button-container">
-                    <Link to="/categories/addcategory">
+                    {user?.role === 'admin' &&
+                    (<Link to="/categories/addcategory">
                         <button>Agregar Categoria </button>
-                    </Link>
+                    </Link>)}
                 </div>
                 <hr/>
                 {categorias.map((categoria) => (
