@@ -47,21 +47,15 @@ export const Category = () => {
 
 
     return (
-
-        <div className="container ">
-
-            <h2>Productos de esta categoria {categoria?.name} </h2>
-            <hr/>
-            <Link to={`/categories/updatecategory/${CategoryId}`}>Actualizar Categoria</Link>
-            <hr/>
-            <Link to="/products/addproduct">
-                <button>Agregar producto </button> </Link>
-
+        <div>
+            <div>
+                <h1 className="titulo">Productos de la categoria: {categoria?.name} </h1>
+            </div>
+            <hr />
             {productos.map((producto) => (
-                <ul key={producto.id}>
-                    <li>
-                        <p>
-                            <Link to={`/products/${producto.id}`}>{producto.title}</Link>
+                <li key={producto.id} className="productos-container">
+                        <p >
+                            <Link to={`/products/${producto.id}`}><h2 className="category-products">{producto.title}</h2></Link>
                         </p>
                         <p> $ {producto.price}</p>
                         <p> Caracteristicas {producto.description}</p>
@@ -73,11 +67,15 @@ export const Category = () => {
 
                                 />
                             ))}
-                            <Link to={`/categories/deletecategory/${CategoryId}`}>Eliminar esta Categoria</Link>
+                            < div className="button-container">
+                                <Link to={`/categories/updatecategory/${CategoryId}`}><button>Actualizar Categoria </button></Link>
+                                <Link to="/products/addproduct">
+                                    <button>Agregar producto </button> </Link>
 
+                                <Link to={`/categories/deletecategory/${CategoryId}`}><button>Eliminar esta Categoria</button></Link>
+                            </div>
                         </div>
-                    </li>
-                </ul>
+                </li>
             ))}
         </div>
     )

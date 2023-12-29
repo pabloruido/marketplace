@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { useCart } from './CartContext';
 import { useAuth } from './AuthContext';
-import './styles/style.css';
+import './styles/style.css'
 
 
 export const Product = () => {

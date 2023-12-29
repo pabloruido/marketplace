@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link, Outlet, useLocation, useNavigate } from 'react-router-dom';
 import { useAuth } from './AuthContext';
 import { useCart } from './CartContext';
-import './styles/layout.css';
+import './styles/layout.css'
 
 
 export function Layout() {
@@ -12,18 +12,7 @@ export function Layout() {
 
   const location = useLocation();
   const navigate = useNavigate();
-  const [search, setSearch] = useState('');
 
-  const handleSearchChange = (e) => {
-    setSearch(e.target.value);
-  };
-
-  const handleSearchSubmit = (e) => {
-    e.preventDefault();
-    const queryParams = new URLSearchParams(location.search);
-    queryParams.set('title', search);
-    navigate(`${location.pathname}?${queryParams}`);
-  };
 
   return (
     <div id="content">
@@ -41,9 +30,6 @@ export function Layout() {
                 <Link to="/products"> Productos </Link>
               </li>
               <li>
-                <button onClick={logout}>Logout</button>
-              </li>
-              <li>
                 <Link to="/cart-detail">
                   <div className="carrito_info">
                     <span role="img" arial-label="Carrito de Compras">
@@ -55,15 +41,9 @@ export function Layout() {
                   <p>Suma Total: ${calcularCarrito().toFixed(2)}</p>
                 </div>
               </li>
-              <form onSubmit={handleSearchSubmit}>
-                <input
-                  type="text"
-                  placeholder="Buscar productos..."
-                  value={search}
-                  onChange={handleSearchChange}
-                />
-                <button type="submit">Buscar</button>
-              </form>
+              <li>
+                <button onClick={logout}>Logout</button>
+              </li>
 
             </>
           ) : (
@@ -80,16 +60,7 @@ export function Layout() {
               <li>
                 <Link to="/products"> Productos </Link>
               </li>
-              <form onSubmit={handleSearchSubmit}>
-                <input
-                  type="text"
-                  placeholder="Buscar productos..."
-                  value={search}
-                  onChange={handleSearchChange}
-                />
-                <button type="submit">Buscar</button>
-              </form>
-
+              
             </>
           )}
         </ul>

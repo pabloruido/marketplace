@@ -26,25 +26,27 @@ export const Categories = () => {
     }, []);
 
     return (
-        <div className='container'>
+        <div>
             {errorCargaAPI && <p>{error}</p>}
-            <h1> - Categorias - </h1>
-            <hr />
+            <h1 className="titulo">  Categorias  </h1>
             <div>
-                <Link to="/categories/addcategory">
-                    <button>Agregar Categoria </button>
-                </Link>
+                <div className="button-container">
+                    <Link to="/categories/addcategory">
+                        <button>Agregar Categoria </button>
+                    </Link>
+                </div>
                 <hr/>
                 {categorias.map((categoria) => (
-                    <div key={categoria.id}>
-                        <hr />
+                    <div key={categoria.id} className="productos-container">
                         <Link to={`/categories/${categoria.id}/products/`}>
-                            Ver detalles de: </Link>
-                        <p>{categoria.name}</p>
+                            <h2 className="category-products"> Ver detalles de: {categoria.name} </h2></Link>
+
+                        <hr />
 
                         <img
                             src={categoria.image}
                             alt={`Imagen de ${categoria.name}`} />
+                        <hr />
                     </div>
                 )
                 )}
